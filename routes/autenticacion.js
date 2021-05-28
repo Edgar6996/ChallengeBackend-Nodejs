@@ -1,6 +1,8 @@
+const  db = require('../models')
 const express = require('express')
 const router = express.Router()
-const  db = require('../models')
+const jwt = require('jsonwebtoken')
+
 
 
 router.post('/login', async (req, res) => {
@@ -13,7 +15,13 @@ router.post('/login', async (req, res) => {
                     contrasenia: req.body.contrasenia
                 }
         })
-        res.status(200).send('Usuario Logueado')
+        jwt.sign({usuario}, 'secretkey', {expiresIn: '60s'}, (err, token) => {
+            res.json({
+                message: "Usuario Logueado",
+                token
+            });
+        });
+
     } catch (e) {
         res.status(403).send('No se puede loguear')
     }
