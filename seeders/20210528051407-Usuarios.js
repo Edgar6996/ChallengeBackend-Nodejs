@@ -22,7 +22,7 @@ module.exports = {
           nombre: faker.name.firstName(),
           apellido: faker.name.lastName(),
           correo: faker.internet.email().toLowerCase(),
-          contraseña: '$2y$10$HxMsOSs9AusOTGYTyElCSu1KRiPf1XL2E7GGoPwg9j26cBNA4.5x.', // baNaNa
+          contrasenia: '$2y$10$HxMsOSs9AusOTGYTyElCSu1KRiPf1XL2E7GGoPwg9j26cBNA4.5x.', // baNaNa
           createdAt: new Date(),
           updatedAt: new Date()
         }

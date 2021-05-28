@@ -17,7 +17,7 @@ module.exports = {
       correo: {
         type: Sequelize.STRING
       },
-      contraseña: {
+      contrasenia: {
         type: Sequelize.STRING
       },
       createdAt: {
