@@ -1,41 +1,31 @@
-//const http = require('http') /* Forma de cargar modulos en nodejs*/
-const express = require('express') //importamos el modulo express
-const app = express() //creamos la aplicacion
+//Importamos el modulo express
+const express = require('express')
 
-let notes = [
-    {
-        "id": 1,
-        "content": "Me tengo que suscribir en Youtube",
-        "date": "2020-05-30T17",
-        "important": true,
-    },
-    {
-        "id": 2,
-        "content": "Tengo que estudiar las clases del fullstack bootcamp",
-        "date": "2020-05-30T17",
-        "important": true,
-    },
-    {
-        "id": 3,
-        "content": "Estudiar JavaScrip",
-        "date": "2020-05-30T17",
-        "important": true,
-    }
-]
-/*const app = http.createServer((request,response) => {
-    response.writeHead(200, {'Content-Type': 'text/plain'})
-    response.end('Hola Edgardo')
-} )*/
+//inicializamos
+const app = express()
 
-app.get('/', (request, response) => {
-response.send('<h1> Hola Edgar </h1>')
-})
+//configuraciones
+app.set('port', process.env.PORT || 4000)
 
-app.get('/api/notes', (request,response) => {
-    response.json(notes)
-})
 
-const PORT = 3001
-app.listen(PORT, ()=>{
-    console.log(`Servidor corriendo en el puerto ${PORT}`)
+//Middleware
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
+
+
+/*variables globales
+app.use((req, res, next) => {
+    app.locals.success = req.flash('success')
+    next()
+})*/
+
+//Rutas
+app.use('/auth', require('./routes/autenticacion'))
+app.use('/characters', require('./routes/personajes'))
+app.use('/movies', require('./routes/peliculas_series'))
+
+
+//iniciar servidor
+app.listen(app.get('port'), () => {
+    console.log('Servidor iniciado en el puerto ', app.get('port'))
 })
