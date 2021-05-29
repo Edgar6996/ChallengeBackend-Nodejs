@@ -15,7 +15,7 @@ router.post('/login', async (req, res) => {
                     contrasenia: req.body.contrasenia
                 }
         })
-        jwt.sign({usuario}, 'secretkey', {expiresIn: '60s'}, (err, token) => {
+        jwt.sign({usuario}, 'secretkey', {expiresIn: '1h'}, (err, token) => {
             res.json({
                 message: "Usuario Logueado",
                 token
