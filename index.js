@@ -22,6 +22,7 @@ app.use((req, res, next) => {
 //Rutas
 app.use('/auth', require('./routes/autenticacion'))
 app.use('/characters', require('./routes/personajes'))
+app.use('/movies', require('./routes/peliculas_series'))
 
 
 //iniciar servidor
